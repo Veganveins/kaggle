@@ -8,10 +8,14 @@ Revised: 28 March 2014
 
 import csv as csv
 import numpy as np
+import os
+#from data import train.csv as train
+x_file = open(os.path.join(data, "train.csv"), "r") 
+csv_file_object = csv.reader(open('../data/train.csv', 'rb'))   # Load in the csv file
 
-csv_file_object = csv.reader(open('train.csv', 'rb'))   # Load in the csv file
-header = csv_file_object.next()                         # Skip the fist line as it is a header
-data=[]                                                 # Create a variable to hold the data
+
+#header = csv_file_object.next()                         # Skip the fist line as it is a header
+#data=[]                                                 # Create a variable to hold the data
 
 for row in csv_file_object:                             # Skip through each row in the csv file,
     data.append(row[0:])                                # adding each row to the data variable
