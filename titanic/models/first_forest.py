@@ -5,6 +5,15 @@ Revised: 15 April 2014
 please see packages.python.org/milk/randomforests.html for more
 
 """ 
+import os, sys
+
+model_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(model_dir, "..")
+print data_dir
+sys.path.append(data_dir)
+train = data_dir+'/data/train.csv'
+test = data_dir+'/data/test.csv'
+
 import pandas as pd
 import numpy as np
 import csv as csv
@@ -12,7 +21,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 # Data cleanup
 # TRAIN DATA
-train_df = pd.read_csv('train.csv', header=0)        # Load the train file into a dataframe
+train_df = pd.read_csv(test, header=0)        # Load the train file into a dataframe
 
 # I need to convert all strings to integer classifiers.
 # I need to fill in the missing values of the data and make it complete.
@@ -41,7 +50,7 @@ train_df = train_df.drop(['Name', 'Sex', 'Ticket', 'Cabin', 'PassengerId'], axis
 
 
 # TEST DATA
-test_df = pd.read_csv('test.csv', header=0)        # Load the test file into a dataframe
+test_df = pd.read_csv(test, header=0)        # Load the test file into a dataframe
 
 # I need to do the same with the test data now, so that the columns are the same as the training data
 # I need to convert all strings to integer classifiers:
@@ -73,7 +82,6 @@ if len(test_df.Fare[ test_df.Fare.isnull() ]) > 0:
 ids = test_df['PassengerId'].values
 # Remove the Name column, Cabin, Ticket, and Sex (since I copied and filled it to Gender)
 test_df = test_df.drop(['Name', 'Sex', 'Ticket', 'Cabin', 'PassengerId'], axis=1) 
-
 
 # The data is now ready to go. So lets fit to the train, then predict to the test!
 # Convert back to a numpy array
