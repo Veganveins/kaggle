@@ -9,7 +9,7 @@ Revised: 28 March 2014
 import csv as csv
 import numpy as np
 
-csv_file_object = csv.reader(open('train.csv', 'rb'))   # Load in the csv file
+csv_file_object = csv.reader(open('../data/train (1).csv', 'rb'))   # Load in the csv file
 header = csv_file_object.next()                         # Skip the fist line as it is a header
 data=[]                                                 # Create a variable to hold the data
 
