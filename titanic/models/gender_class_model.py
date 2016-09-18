@@ -4,12 +4,19 @@ Date : 18th September 2012
 Revised : 28 March 2014
 hello
 """
+import os, sys
 
+model_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(model_dir, "..")
+print data_dir
+sys.path.append(data_dir)
+train = data_dir+'/data/train.csv'
+test = data_dir+'/data/test.csv'
 
 import csv as csv
 import numpy as np
 
-csv_file_object = csv.reader(open('train.csv', 'rb'))       # Load in the csv file
+csv_file_object = csv.reader(open(train, 'rb'))       # Load in the csv file
 header = csv_file_object.next()                             # Skip the fist line as it is a header
 data=[]                                                     # Create a variable to hold the data
 
@@ -70,7 +77,7 @@ survival_table[ survival_table >= 0.5 ] = 1
 # Now I have my indicator I can read in the test file and write out
 # if a women then survived(1) if a man then did not survived (0)
 # First read in test
-test_file = open('test.csv', 'rb')
+test_file = open(test, 'rb')
 test_file_object = csv.reader(test_file)
 header = test_file_object.next()
 
