@@ -1,13 +1,15 @@
 
 library(data.table)
-debate = read.csv('~/Downloads/debate.csv')
-debate = as.data.table(debate)
+debate.copy = read.csv('~/Downloads/debate.csv')
+debate = as.data.table(debate.copy)
 
+debate = debate[Speaker == "Clinton" | Speaker == "Trump"]
 
+length(debate$Speaker)
 clinton = debate[Speaker == "Clinton"]
 trump = debate[Speaker == "Trump"]
 
-length(debate$Speaker)
+
 length(trump$Speaker)
 length(clinton$Speaker)
 
